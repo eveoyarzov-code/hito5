@@ -1,36 +1,37 @@
-# 🍕 Pizzería Mamma Mía - Hito 4
+# 🍕 Pizzería Mamma Mía - Hito 5
 
-Este hito marca la transición de datos estáticos locales al consumo de una API externa en tiempo real, permitiendo que el catálogo y las vistas de detalle de la pizzería se rendericen de forma dinámica utilizando React Hooks.
+Este hito se enfoca en la implementación de **React Router Dom** para transformar la aplicación en una Single Page Application (SPA), permitiendo la navegación fluida entre múltiples vistas sin recargar el navegador.
 
-## 🚀 Cambios Implementados
+## 🚀 Cambios e Implementaciones
 
-### 1. Consumo Dinámico de la API General (`Home.jsx`)
-- Se eliminó el archivo de datos estáticos locales (`pizzas.js`).
-- Implementación de `useState` para almacenar la lista de pizzas proveniente del backend.
-- Uso de `useEffect` con un array de dependencias vacío `[]` para realizar una única petición al montar el componente a la URL: `http://localhost:5000/api/pizzas`.
-- Traspaso de la propiedad `desc` a las tarjetas individuales para visualizar la descripción completa de cada pizza.
+### 1. Reorganización de la Estructura de Carpetas
+- Se creó la carpeta `src/pages/` para separar las vistas completas de la aplicación.
+- Se trasladaron los componentes `Home`, `RegisterPage`, `LoginPage`, `Cart` y `Pizza` a esta nueva estructura de páginas, corrigiendo todas las rutas relativas de importación.
 
-### 2. Modificación de Tarjetas (`CardPizza.jsx`)
-- Se adaptaron las props para recibir el campo `desc` dinámicamente desde el backend.
-- Renderizado de la descripción mediante estilos limpios de Bootstrap (`text-muted small`).
+### 2. Configuración del Enrutador
+- Envoltura global de la aplicación con `<BrowserRouter>` en el archivo `main.jsx`.
+- Definición de las rutas principales dentro de `<Routes>` en `App.jsx`.
 
-### 3. Vista de Detalle Individual (`Pizza.jsx`)
-- Creación de un nuevo componente enfocado en simular una vista detallada.
-- Consumo del endpoint específico para una pizza: `http://localhost:5000/api/pizzas/p001`.
-- Renderizado completo del producto incluyendo su imagen, descripción detallada, lista de ingredientes formateada y precio.
+### 3. Rutas Implementadas (7 en total)
+- **`/`**: Muestra la vista del catálogo general (`Home`).
+- **`/register`**: Acceso al formulario de registro (`RegisterPage`).
+- **`/login`**: Acceso al formulario de inicio de sesión (`LoginPage`).
+- **`/cart`**: Muestra el resumen de compras (`Cart`).
+- **`/pizza/p001`**: Detalle dinámico de un producto específico (`Pizza`).
+- **`/profile`**: Nueva vista de perfil de usuario (`Profile`).
+- **`*` / `/404`**: Ruta comodín para capturar enlaces rotos que renderiza el componente `NotFound`.
+
+### 4. Navegación Dinámica (`Navbar.jsx`)
+- Se reemplazaron las etiquetas tradicionales por el componente `<Link>` de React Router para habilitar la navegación instantánea.
+- Se mantuvieron todos los botones visibles de forma simultánea en la barra superior para facilitar el testeo completo de los endpoints de la aplicación.
 
 ---
 
-## 🛠️ Cómo ejecutar el proyecto localmente
+## 💻 Ejecución del Proyecto
 
-1. **Levantar el Backend:**
-   Asegúrate de iniciar el servidor de la API en el puerto http://localhost:5000/api/pizzas
-
-2. **Iniciar el Frontend:**
-   En la raíz de este proyecto, ejecuta en tu terminal:
+1. Asegúrate de tener el backend corriendo en el puerto `5000`.
+2. En la carpeta del frontend, ejecuta:
    ```bash
    npm run dev
    ```
-3. Abre `http://localhost:5173` en tu navegador para ver la aplicación funcionando en vivo.
-
-
+3. Navega e interactúa con la barra de menú en `http://localhost:5173`.

@@ -1,69 +1,46 @@
-import React from 'react';
+import { Link } from "react-router-dom";
 
-const Navbar = ({ totalAmount = 0, totalCount = 0 }) => {
+const Navbar = () => {
+  const total = 25000; // Valor del carrito de compras
 
-  
   return (
-    <nav style={{backgroundColor: 'black'}}>
-      <div>
-        
-        <div style={{ display: 'flex', flexDirection: 'file', minHeight: '2rem', gap: '10px', padding: '10px' }}>
-          <span 
-            style={{ cursor: "pointer", color: 'white' }} 
-            onClick={(e) => cambiarVista(e, "home")}
-          >
-            Pizzería Mamma Mía!
-          </span>
-          
-          <button 
-            type="button" 
-            onClick={(e) => cambiarVista(e, "home")}
-          >
-            🍕 Home
-          </button>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 justify-content-between">
+      <div className="d-flex align-items-center">
+        {/* Enlace de la marca al Home */}
+        <Link to="/" className="navbar-brand text-white fw-bold me-4">
+          🍕 Pizzería Mamma Mía!
+        </Link>
 
-          <button 
-            type="button"
-            onClick={(e) => cambiarVista(e, "login")}
-          >
+        {/* Lista completa de botones de navegación (Todos visibles) */}
+        <div className="d-flex gap-2">
+          <Link to="/" className="btn btn-outline-light btn-sm">
+            🏠 Home
+          </Link>
+          
+          <Link to="/login" className="btn btn-outline-light btn-sm">
             🔐 Login
-          </button>
-
-          <button 
-            type="button" 
-            onClick={(e) => cambiarVista(e, "register")}
-          >
-            🔒 Register
-          </button>
-   
-        <div className='ms-auto'>
-          <button type="button" className="btn btn-outline-info btn-sm px-3 fw-bold d-flex align-items-center gap-2">
+          </Link>
           
-            <div className="d-flex align-items-center
-             gap-1">
-              <span>🛒</span>
-              {totalCount > 0 && (
-                <span className="badge bg-info text-dark rounded-pill px-1.5 py-0.5 small shadow-sm" style={{ fontSize: "0.75rem" }}>
-                  {totalCount}
-                </span>
-              )}
-            </div>
-           
-            <span>Total: ${totalAmount.toLocaleString("es-CL")}</span>
+          <Link to="/register" className="btn btn-outline-light btn-sm">
+            🔐 Register
+          </Link>
+          
+          <Link to="/profile" className="btn btn-outline-light btn-sm">
+            👤 Profile
+          </Link>
+          
+          <button className="btn btn-outline-danger btn-sm">
+            🚪 Logout
           </button>
-       </div>
         </div>
-
       </div>
+
+      {/* Botón de acceso directo al Carrito */}
+      <Link to="/cart" className="btn btn-outline-info btn-sm text-info fw-semibold">
+        🛒 Total: ${total.toLocaleString()}
+      </Link>
     </nav>
   );
 };
 
-
-
-
-
-
-
 export default Navbar;
-            

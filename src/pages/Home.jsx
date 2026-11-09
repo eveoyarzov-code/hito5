@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import Pizza from "./Pizza";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
-import CardPizza from "./CardPizza"
+import Pizza from "../pages/Pizza";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import CardPizza from "../components/CardPizza"
 
 const Home = () => {
   const [pizzas, setPizzas] = useState([]);
